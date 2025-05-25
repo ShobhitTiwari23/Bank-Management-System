@@ -12,13 +12,7 @@ Allows users to sign up, log in with a card number and PIN, and perform common b
 - [Getting Started](#getting-started)  
   - [1. Clone the repo](#1-clone-the-repo)  
   - [2. Configure the Database](#2-configure-the-database)  
-  - [3. Build & Run](#3-build--run)  
-- [Project Structure](#project-structure)  
-- [Usage Flow](#usage-flow)  
-- [Screenshots](#screenshots)  
-- [Dependencies](#dependencies)  
-- [License](#license)  
-- [Author](#author)
+  - [3. Build & Run](#3-build--run) 
 
 ---
 
