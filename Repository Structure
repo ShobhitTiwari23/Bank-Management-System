@@ -1,11 +1,3 @@
-bank-management-system/
-├── build.xml
-├── manifest.mf
-├── nbproject/
-│   ├── build-impl.xml
-│   ├── project.xml
-│   └── private/
-│       └── private.xml
 ├── src/
 │   ├── bank/
 │   │   └── management/
@@ -16,19 +8,18 @@ bank-management-system/
 │   │           ├── SignupThree.java
 │   │           ├── Login.java
 │   │           ├── Deposit.java
-│   │           ├── Withdrawl.java      ← note the spelling in your code
+│   │           ├── Withdrawl.java     
 │   │           ├── FastCash.java
 │   │           ├── MiniStatement.java
 │   │           ├── BalanceEnquiry.java
 │   │           ├── PinChange.java
 │   │           └── Transactions.java
 │   └── icons/
-│       ├── atm.jpg
 │       ├── icon.jpg
 │       └── logo.jpg
 ├── build/
-│   └── classes/                ← compiled `.class` files
+│   └── classes/               
 │       └── bank/management/system/*.class
-└── test/                       ← (empty; add your JUnit tests here)
+└── test/                      
 ├── .getignore
 └── README.md
