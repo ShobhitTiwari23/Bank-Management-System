@@ -1,0 +1,156 @@
+1. **Creating the new project with JDK & IDE setup**  
+   - Created as a **NetBeans “Java Application”** targeting **Java JDK 8**.  
+   - Includes the `nbproject/` folder containing NetBeans project metadata (`project.xml`, `build-impl.xml`, `private.xml`).
+
+2. **Define the project structure**  
+```
+
+bank-management-system/
+├── build.xml
+├── manifest.mf
+├── nbproject/
+│   ├── build-impl.xml
+│   ├── project.xml
+│   └── private/
+│       └── private.xml
+├── src/
+│   ├── bank/
+│   │   └── management/
+│   │       └── system/
+│   │           ├── Conn.java
+│   │           ├── SignupOne.java
+│   │           ├── SignupTwo.java
+│   │           ├── SignupThree.java
+│   │           ├── Login.java
+│   │           ├── Deposit.java
+│   │           ├── Withdrawl.java
+│   │           ├── FastCash.java
+│   │           ├── MiniStatement.java
+│   │           ├── BalanceEnquiry.java
+│   │           ├── PinChange.java
+│   │           └── Transactions.java
+│   └── icons/
+│       ├── atm.jpg
+│       ├── icon.jpg
+│       └── logo.jpg
+├── build/
+│   └── classes/      ← compiled `.class` files
+└── test/             ← (empty; add JUnit tests)
+
+````
+
+3. **Design the database schema for the project**  
+- **Schema**: `banking_system`  
+- **Tables**:  
+  - `login(pin, card_number, password)`  
+  - `signupthree(pin, account_type)`  
+  - `bank(pin, date, type, amount)`  
+- This structure supports login, signup, and transactions.
+
+4. **Create a MySQL table**  
+```sql
+CREATE DATABASE banking_system;
+USE banking_system;
+
+CREATE TABLE login (
+  pin VARCHAR(10) PRIMARY KEY,
+  card_number VARCHAR(20) NOT NULL,
+  password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE signupthree (
+  pin VARCHAR(10) PRIMARY KEY,
+  account_type VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE bank (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  pin VARCHAR(10),
+  date DATE,
+  type VARCHAR(20),
+  amount DECIMAL(10,2),
+  FOREIGN KEY (pin) REFERENCES login(pin)
+);
+````
+
+5. **Implement JDBC for database connectivity**
+
+   * **`Conn.java`** initializes connection via:
+
+     ```java
+     public class Conn {
+       public Connection c;
+       public Conn() {
+         try {
+           Class.forName("com.mysql.jdbc.Driver");
+           c = DriverManager.getConnection(
+             "jdbc:mysql://localhost:3306/banking_system",
+             "root", "yourPassword"
+           );
+         } catch (Exception e) {
+           e.printStackTrace();
+         }
+       }
+     }
+     ```
+   * Exposes a shared `Connection` instance for all GUI modules.
+
+6. **Create Model, DAO classes for the database operations**
+
+   * 🔹 **TransactionDAO.java**
+
+     ```java
+     public class TransactionDAO {
+       public void addTransaction(String pin, String type, double amount) { … }
+       public List<String> getMiniStatement(String pin) { … }
+     }
+     ```
+   * 🔹 **BalanceDAO.java**
+
+     ```java
+     public class BalanceDAO {
+       public double getBalance(String pin) { … }
+     }
+     ```
+   * 🔹 **UserDAO.java**
+
+     ```java
+     public class UserDAO {
+       public boolean login(String cardNo, String pin) { … }
+       public void signup(String formNo, String cardNumber, String pin) { … }
+       public void changePin(String oldPin, String newPin) { … }
+     }
+     ```
+   * This separation keeps business logic and DB operations in dedicated classes.
+
+7. **Aesthetics and Visual Appeal of the UI**
+
+   * Consistent **Swing** look-and-feel with ATM-style icons (`atm.jpg`, `icon.jpg`, `logo.jpg`).
+   * Fonts like **Raleway** and **System** used for clarity:
+
+     ```java
+     text.setFont(new Font("System", Font.BOLD, 16));
+     ```
+   * Background images set on panels for an ATM-like feel.
+
+8. **Component Placement and Alignment in the UI**
+
+   * All forms use **absolute positioning** via `setBounds()`:
+
+     ```java
+     pin.setBounds(330, 320, 180, 25);
+     ```
+   * Inputs and labels grouped logically (e.g., PIN fields together).
+
+9. **Responsiveness and Accessibility of the UI**
+
+   * **ActionListener** handles button actions:
+
+     ```java
+     withdraw.addActionListener(this);
+     JOptionPane.showMessageDialog(null, "Withdraw Successful");
+     ```
+   * **JOptionPane** dialogs for immediate feedback.
+   * Keyboard-navigable components with focus traversal set in NetBeans.
+
+```
