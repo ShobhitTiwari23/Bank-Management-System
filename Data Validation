@@ -1,0 +1,5 @@
+if (textField.getText().trim().isEmpty()) {
+    // Warn the user if any required input field is left empty
+    JOptionPane.showMessageDialog(null, "Field cannot be empty.");
+    return; // Stop further execution until the user enters valid input
+}
