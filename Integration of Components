@@ -1,0 +1,3 @@
+// After successful login or signup, transition to the Transactions screen
+setVisible(false); // Hide the current screen
+new Transactions(pinnumber).setVisible(true); // Open transactions screen with the user's PIN
