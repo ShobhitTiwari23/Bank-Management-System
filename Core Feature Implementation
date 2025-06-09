@@ -1,0 +1,6 @@
+if (loginSuccess) {
+    // If login credentials are verified successfully,
+    // close the current login screen and open the transactions menu.
+    setVisible(false);
+    new Transactions(pinnumber).setVisible(true); // Move to Transactions page with user's PIN
+}
