@@ -1,0 +1,3 @@
+PreparedStatement ps = conn.c.prepareStatement("SELECT * FROM login WHERE pin = ?");
+ps.setString(1, pin); // Sets the PIN securely into the query
+ResultSet rs = ps.executeQuery(); // Execute the secure query
