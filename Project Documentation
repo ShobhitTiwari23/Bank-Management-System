@@ -1,0 +1,11 @@
+/**
+ * This is a Java Swing-based ATM Simulation Project.
+ * Features include:
+ * - Login and Signup Forms
+ * - Deposit, Withdrawal, Balance Enquiry
+ * - MySQL Database Integration for storing user data
+ * - Event-driven GUI using Java Swing
+ * 
+ * Developed for: College Java Project Submission
+ * Guidelines Followed: Functionality, Robustness, UI Integration, Documentation
+ */
