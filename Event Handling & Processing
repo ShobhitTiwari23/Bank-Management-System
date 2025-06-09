@@ -1,0 +1,5 @@
+login.addActionListener(e -> {
+    // This lambda handles login button click
+    // Add login logic like validating card and pin here
+    validateLogin(); // (Assuming validateLogin is a method to process login)
+});
