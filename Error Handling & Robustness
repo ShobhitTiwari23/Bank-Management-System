@@ -1,0 +1,10 @@
+try {
+    // Attempt to establish connection or query database
+    Conn conn = new Conn();
+    // Other DB operations...
+} catch (Exception e) {
+    // Show a user-friendly error message if something fails
+    JOptionPane.showMessageDialog(null, "Database connection failed. Try again.");
+    // Optionally log the exception for developers
+    e.printStackTrace();
+}
